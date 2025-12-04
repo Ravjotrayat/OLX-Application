@@ -1,0 +1,35 @@
+About Monolithic Architecture
+=> M app. has single codebase(Single repository) with multiple modules. Modules can be either business or technical feature.
+	It has a single build system which build entire application / dependency.
+
+About Service Oriented Architecture(SOA)
+=> Inshot "module based service separation"
+
+About Microservice Architecture
+=> It is a collections of sevices that are: loosely coupled, highly maintainable and testable, independently deployed, owned by small teams
+
+=> Webservices allows us to establish language and platform independent communication.
+Types of Webservices::
+- SOAP(Completely based upon XML)
+- REST(Representational State Transfer)
+	(protocol = http, payload support = XML, JSON, HTML, TEXT)
+REST API => URL + HTTP Method(GET, POST, PUT, DELETE)
+
+Spring Boot :
+=> Its an easier and faster way to setup, configure, and run both simple and web-based applications.
+	It provide RAD(Rapid Application Development) feature.
+	Combination of Spring framework + Embedded Servers.
+	SB used convention over configuration that means it decreases the effort of the developer i.e. no need to write XML files.
+
+
+				 <==>CRUD Services
+				|
+				|
+Client <==> Controller <==> Service Layer <==>   Model
+				|		   |
+                                |<==> Database  <==|
+
+
+
+
+
