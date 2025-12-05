@@ -29,7 +29,7 @@ Client <==> Controller <==> Service Layer <==>   Model
 				|		   |
                                 |<==> Database  <==|
 
-
+ResponseEntity => Data + HTTP response code
 
 
 

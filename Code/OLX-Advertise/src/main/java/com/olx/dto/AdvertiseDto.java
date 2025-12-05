@@ -1,8 +1,5 @@
 package com.olx.dto;
 
-import java.sql.Blob;
-import java.sql.Date;
-
 public class AdvertiseDto {
 
 //	private int id;
@@ -61,6 +58,6 @@ public class AdvertiseDto {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	
-	
+
+
 }
