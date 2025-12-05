@@ -37,9 +37,9 @@ public class AdvertiseServiceImpl implements AdvertiseService {
 	@Override
 	public AdvertiseDto updateAdvertise(int id, AdvertiseDto advertiseDto) {
 		AdvertiseDto dto=getAdvertiseById(id);
-		dto.setMarket("PAJI");
-		dto.setName("LSEG");
-		dto.setPrice(3874);
+		dto.setMarket(advertiseDto.getMarket());
+		dto.setName(advertiseDto.getName());
+		dto.setPrice(advertiseDto.getPrice());
 
 		return dto;
 	}
@@ -47,8 +47,10 @@ public class AdvertiseServiceImpl implements AdvertiseService {
 	@Override
 	public boolean deleteAdvertiseByid(int id) {
 		AdvertiseDto dto=getAdvertiseById(id);
+		if(dto==null) return false;
+		else {
 		obj.remove(dto);
-		return true;
+		return true;}
 	}
 
 	private static List<AdvertiseDto> obj=new ArrayList<>();

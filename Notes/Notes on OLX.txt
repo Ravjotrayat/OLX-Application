@@ -31,5 +31,29 @@ Client <==> Controller <==> Service Layer <==>   Model
 
 ResponseEntity => Data + HTTP response code
 
+Swagger.io => Open API Specification(OAS)
+
+Use Jackson dependency(external dep.) to consume info in XML format.
+
+Learn Content Negotiation and Validation from previous videos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

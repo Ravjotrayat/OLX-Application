@@ -1,5 +1,9 @@
 package com.olx.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 public class AdvertiseDto {
 
 //	private int id;
@@ -16,9 +20,23 @@ public class AdvertiseDto {
 //	private String username;
 
 	private int id;
+	
+	@NotEmpty
+	@NotNull
+	@Schema(name = "name", description = "Name of the advertisement")
 	private String name;
+	
+	@NotEmpty
+	@NotNull
+	@Schema(name = "", description = "")
 	private String market;
+	
+	@NotEmpty
+	@NotNull
+	@Schema(name = "", description = "")
 	private int price;
+	
+	
 	public AdvertiseDto(int id, String name, String market, int price) {
 		super();
 		this.id = id;
