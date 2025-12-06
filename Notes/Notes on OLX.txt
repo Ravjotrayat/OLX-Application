@@ -37,7 +37,20 @@ Use Jackson dependency(external dep.) to consume info in XML format.
 
 Learn Content Negotiation and Validation from previous videos
 
+Exception handling priority into SB App:
+1.) Check for local exception handler.
+2.) Check for Global exception handler.
+3.) Check for @ResponseStatus at exception class level.
+4.) Throw stack trace with code 500
+		
+Actuator :
 
+
+Model Mapper :
+
+
+
+Spring Data JPA(Java Persistence)
 
 
 

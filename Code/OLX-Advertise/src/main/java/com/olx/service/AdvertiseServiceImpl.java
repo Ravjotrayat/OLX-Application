@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.olx.dto.AdvertiseDto;
+import com.olx.exception.InvalidAdvertiseIdException;
 
 //Its optional to provide name in Service if connected with single DB, For >2 then naming is required
 @Service("MySQl_DB")
@@ -24,7 +25,7 @@ public class AdvertiseServiceImpl implements AdvertiseService {
 				return advertiseDto;
 			}
 		}
-		return null;
+	    throw new InvalidAdvertiseIdException(" "+id);
 	}
 
 	@Override
