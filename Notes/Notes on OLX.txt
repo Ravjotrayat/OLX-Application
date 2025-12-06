@@ -44,7 +44,14 @@ Exception handling priority into SB App:
 4.) Throw stack trace with code 500
 		
 Actuator :
-
+=> You can modify the base path from (http://localhost:8080/actuator) to (http://localhost:8080/Advertise)
+=> We can enable all/particular endpoints of actuator.
+=> We can override the existing as well as create new endpoints actuator using Builder class, on condition :
+	- for @GetMapping we have --> @ReadOperation
+	- for @PostMapping we have --> @WriteOperation
+	- for @DeleteMapping we have --> @DeleteOperation
+	- for @PathVariable we have --> @Selector
+	
 
 Model Mapper :
 
