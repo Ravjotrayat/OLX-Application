@@ -29,12 +29,6 @@ import io.swagger.v3.oas.annotations.Operation;
 @RequestMapping("/advertise")
 public class Controller {
 
-//	@PostMapping
-//	private String addAdvertise()
-//	{
-//		return null;
-//	}
-
 	@Autowired
 	@Qualifier("MySQl_DB")
 	AdvertiseService advertiseService;
