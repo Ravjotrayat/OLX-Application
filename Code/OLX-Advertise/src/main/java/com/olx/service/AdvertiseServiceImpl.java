@@ -48,8 +48,9 @@ public class AdvertiseServiceImpl implements AdvertiseService {
 	@Override
 	public boolean deleteAdvertiseByid(int id) {
 		AdvertiseDto dto=getAdvertiseById(id);
-		if(dto==null) return false;
-		else {
+		if(dto==null) {
+			return false;
+		} else {
 		obj.remove(dto);
 		return true;}
 	}

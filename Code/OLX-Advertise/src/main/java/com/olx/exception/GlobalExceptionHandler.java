@@ -11,12 +11,12 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 // Global Exceptional Handler
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
-	
+
 	@ExceptionHandler(value = {InvalidAdvertiseIdException.class})
 	public ResponseEntity<Object> handleInvalidid(Exception ex, WebRequest request ) throws Exception
 	{
 		String clientMessage=ex.toString();
 		return handleExceptionInternal(ex, clientMessage, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}
-	
+
 }
