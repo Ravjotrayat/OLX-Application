@@ -18,5 +18,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		String clientMessage=ex.toString();
 		return handleExceptionInternal(ex, clientMessage, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}
+	
+	
 
 }

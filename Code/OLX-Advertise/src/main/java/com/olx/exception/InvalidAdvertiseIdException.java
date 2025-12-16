@@ -12,7 +12,6 @@ public class InvalidAdvertiseIdException extends RuntimeException { // Uncheked 
 
 	public InvalidAdvertiseIdException() {
 		this.message="";
-
 	}
 
 	public InvalidAdvertiseIdException(String message, Throwable cause, boolean enableSuppression,

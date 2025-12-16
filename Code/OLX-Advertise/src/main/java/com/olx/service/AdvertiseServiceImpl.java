@@ -49,7 +49,7 @@ public class AdvertiseServiceImpl implements AdvertiseService {
 	public boolean deleteAdvertiseByid(int id) {
 		AdvertiseDto dto=getAdvertiseById(id);
 		if(dto==null) {
-			return false;
+			throw new InvalidAdvertiseIdException(" "+id);
 		} else {
 		obj.remove(dto);
 		return true;}
