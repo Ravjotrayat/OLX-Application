@@ -32,20 +32,21 @@ public class AdvertiseController {
 	@Qualifier("MySQl_DB")
 	AdvertiseService advertiseService;
 
-	@Operation(description = "Get all advertise")
+	@Operation(description = "Get all Advertisement")
 	@GetMapping(value = "/ad",produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<AdvertiseDto>>  getAllAdvertise()
 	{
 		return new ResponseEntity<>(advertiseService.getAllAdvertise(), HttpStatus.OK);
 	}
 
+	@Operation(description = "Get Advertisement by Id")
 	@GetMapping(value = "/ad/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<AdvertiseDto>  getAdvertiseById(@PathVariable("id") int id )
 	{
 		return new ResponseEntity<>(advertiseService.getAdvertiseById(id),HttpStatus.OK);
 	}
 
-
+	@Operation(description = "Create a new Advertisement")
 	@PostMapping(value = "/ad/create",consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<AdvertiseDto> createAdvertises(@RequestBody AdvertiseDto advertiseDto)
@@ -54,7 +55,7 @@ public class AdvertiseController {
 		return new ResponseEntity<>(advertiseDto2,HttpStatus.CREATED);
 	}
 
-
+	@Operation(description = "Update the Advertisement by using advertiseId")
 	@PutMapping(value = "/ad/{id}",consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<AdvertiseDto> updateAdvertises(@PathVariable("id") int id,
@@ -64,7 +65,8 @@ public class AdvertiseController {
 		return new ResponseEntity<>(advertiseDto2,HttpStatus.CREATED);
 	}
 
-
+	
+	@Operation(description = "Only the advertisement owner can delete the advertise")
 	@DeleteMapping(value = "/ad/{id}")
 	public ResponseEntity<Boolean> deleteAdvertiseByid(@PathVariable("id") int id )
 	{
@@ -74,7 +76,7 @@ public class AdvertiseController {
 			return new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);
 		}
 	}
-
+//-------------------------------------------------------------------------------------------------------------
 //	Local Exceptional Handler
 	@ExceptionHandler(value = {InvalidAdvertiseIdException.class})
 	public ResponseEntity<Object> handleInvalidid(Exception ex, WebRequest request ) throws Exception
