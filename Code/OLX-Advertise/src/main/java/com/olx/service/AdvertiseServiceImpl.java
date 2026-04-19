@@ -57,11 +57,7 @@ public class AdvertiseServiceImpl implements AdvertiseService {
 	public boolean deleteAdvertiseByid(int id) {
 		AdvertiseDto dto=getAdvertiseById(id);
 		if(dto==null) {
-<<<<<<< HEAD
 			throw new IdNotFoundException(" "+id);
-=======
-			throw new InvalidAdvertiseIdException(" "+id);
->>>>>>> f458163ed9d3a3a5c4b794b11cf2750efb4d4dd2
 		} else {
 		obj.remove(dto);
 		return true;}

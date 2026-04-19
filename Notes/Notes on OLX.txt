@@ -69,9 +69,3 @@ OLX App ============= Spring Data ============JPA============== Hibernate=======
 								IBatis
 
 
-
-
-
-
-
-

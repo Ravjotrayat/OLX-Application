@@ -62,11 +62,7 @@ public class AdvertiseController {
 		return new ResponseEntity<>(advertiseDto2,HttpStatus.CREATED);
 	}
 
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> f458163ed9d3a3a5c4b794b11cf2750efb4d4dd2
 	@Operation(description = "Only the advertisement owner can delete the advertise")
 	@DeleteMapping(value = "/ad/{id}")
 	public ResponseEntity<Boolean> deleteAdvertiseByid(@PathVariable("id") int id )
@@ -78,7 +74,6 @@ public class AdvertiseController {
 		}
 	}
 //-------------------------------------------------------------------------------------------------------------
-<<<<<<< HEAD
 
 //	//	Local Exceptional Handler
 //	@ExceptionHandler(value = {InvalidAdvertiseIdException.class})
@@ -87,15 +82,6 @@ public class AdvertiseController {
 //		String clientMessage=ex.toString();
 //		return new ResponseEntity<>(clientMessage, HttpStatus.CONFLICT);
 //	}
-=======
-//	Local Exceptional Handler
-	@ExceptionHandler(value = {InvalidAdvertiseIdException.class})
-	public ResponseEntity<Object> handleInvalidid(Exception ex, WebRequest request ) throws Exception
-	{
-		String clientMessage=ex.toString();
-		return new ResponseEntity<>(clientMessage, HttpStatus.CONFLICT);
-	}
->>>>>>> f458163ed9d3a3a5c4b794b11cf2750efb4d4dd2
 
 
 }
