@@ -3,10 +3,10 @@ About Monolithic Architecture
 	It has a single build system which build entire application / dependency.
 
 About Service Oriented Architecture(SOA)
-=> Inshot "module based service separation"
+=> In-shot "module based service separation"
 
 About Microservice Architecture
-=> It is a collections of sevices that are: loosely coupled, highly maintainable and testable, independently deployed, owned by small teams
+=> It is a collections of services that are: loosely coupled, highly maintainable and testable, independently deployed, owned by small teams
 
 => Webservices allows us to establish language and platform independent communication.
 Types of Webservices::
@@ -56,19 +56,17 @@ Actuator :
 Model Mapper :
 
 
-
-Spring Data JPA(Java Persistence)
-
+JDBD = 
 
 
+Spring Data JPA(Java Persistence API)
 
-
-
-
-
-
-
-
+	  	{Repository 					
+		   API}		javax.persistence		TopLink
+		    |		|				|
+OLX App ============= Spring Data ============JPA============== Hibernate======== RDBMS
+								|
+								IBatis
 
 
 
