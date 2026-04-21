@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+
 // Global Exceptional Handler
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
@@ -28,4 +29,23 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		String ex=exception.toString();
 		return handleExceptionInternal(exception, ex, new HttpHeaders(), HttpStatus.CONFLICT, request);
 	}
+	
+	@ExceptionHandler(value = {NewMarketNameAlreadyPresentException.class})
+	public ResponseEntity<Object> handleNameException(Exception tt, WebRequest request ) throws Exception
+	{
+		String ex=tt.toString();
+		return handleExceptionInternal(tt, ex, new HttpHeaders(), HttpStatus.CONFLICT, request);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+

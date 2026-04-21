@@ -28,12 +28,12 @@ public class AdvertiseDto {
 
 	@NotEmpty
 	@NotNull
-	@Schema(name = "", description = "")
+	@Schema(name = "market", description = "Market name ")
 	private String market;
 
 	@NotEmpty
 	@NotNull
-	@Schema(name = "", description = "")
+	@Schema(name = "price", description = "Price of the advertised product")
 	private int price;
 
 
@@ -46,7 +46,6 @@ public class AdvertiseDto {
 	}
 	public AdvertiseDto() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public int getId() {
 		return id;
@@ -76,6 +75,5 @@ public class AdvertiseDto {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-
 
 }

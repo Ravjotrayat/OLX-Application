@@ -3,26 +3,41 @@ package com.olx.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.olx.dto.AdvertiseDto;
+import com.olx.entity.AdvertiseEntity;
 import com.olx.exception.GlobalExceptionHandler;
 import com.olx.exception.IdNotFoundException;
 import com.olx.exception.InvalidAdvertiseIdException;
+import com.olx.exception.NewMarketNameAlreadyPresentException;
+import com.olx.repository.AdvertiseRepository;
 
 //Its optional to provide name in Service if connected with single DB, For >2 then naming is required
 @Service("MySQl_DB")
 public class AdvertiseServiceImpl implements AdvertiseService {
+	
     private final GlobalExceptionHandler globalExceptionHandler;
+    
+    @Autowired
+    AdvertiseRepository advertiseRepository;
 
     AdvertiseServiceImpl(GlobalExceptionHandler globalExceptionHandler) {
         this.globalExceptionHandler = globalExceptionHandler;
     }
 
-
+    // Done the changes for database 
 	@Override
 	public List<AdvertiseDto> getAllAdvertise() {
-		return obj;
+		List<AdvertiseEntity> advertiseEntity = advertiseRepository.findAll();
+		List<AdvertiseDto> advertiseDtos=new ArrayList<>();
+		for (AdvertiseEntity advertiseEntity2 : advertiseEntity) {
+			AdvertiseDto advertiseDto=new AdvertiseDto(advertiseEntity2.getId(),advertiseEntity2.getName(), advertiseEntity2.getMarket()
+					,advertiseEntity2.getPrice());
+			advertiseDtos.add(advertiseDto);
+		}
+		return advertiseDtos;
 	}
 
 	@Override
@@ -36,11 +51,24 @@ public class AdvertiseServiceImpl implements AdvertiseService {
 	    throw new InvalidAdvertiseIdException(" "+id);
 	}
 
+	// Done the changes for database 
 	@Override
 	public AdvertiseDto createAdvertise(AdvertiseDto advertiseDto) {
-		advertiseDto.setId(obj.size()+1);
-		obj.add(advertiseDto);
+		
+		AdvertiseEntity advertiseEntity, dd;
+	
+		dd=advertiseRepository.findByMarket(advertiseDto.getMarket());
+		System.out.println(dd);
+		if(dd==null) {
+			advertiseEntity=new AdvertiseEntity(advertiseDto.getName(),advertiseDto.getMarket(),advertiseDto.getPrice());
+			advertiseEntity = advertiseRepository.save(advertiseEntity);
+		
+			advertiseDto = new AdvertiseDto(advertiseEntity.getId(),advertiseEntity.getName(),
+										advertiseEntity.getMarket(),advertiseEntity.getPrice());
 		return advertiseDto;
+		}
+		else 
+			 throw new NewMarketNameAlreadyPresentException(" "+advertiseDto.getMarket());
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package com.olx.service;
 import java.util.List;
 
 import com.olx.dto.AdvertiseDto;
+import com.olx.repository.AdvertiseRepository;
 
 public interface AdvertiseService {
 

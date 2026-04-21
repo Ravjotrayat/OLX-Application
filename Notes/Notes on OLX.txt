@@ -59,13 +59,60 @@ Model Mapper :
 JDBD = 
 
 
-Spring Data JPA(Java Persistence API)
-
-	  	{Repository 					
-		   API}		javax.persistence		TopLink
-		    |		|				|
-OLX App ============= Spring Data ============JPA============== Hibernate======== RDBMS
+Spring Data JPA(Java Persistence API)				ORM Tools(Object Relational Mapping)
 								|
-								IBatis
+	  	  {Repository 				      -------------------------------
+		     API}		javax.persistence	  TopLink
+		      |		                |                 |
+OLX App ============= Spring Data ============|JPA|============== Hibernate======== RDBMS
+					       ---	       	  |
+								  IBatis
+
+The Spring Data JPA is a framework which automatically performs :
+1. CRUD operation
+2. Paging
+3. Sorting
+4. Custom Finding
+
+What is Spring Data?
+Ans. It is the part of Spring Framework. Provides abstraction layer over SQL as well as NoSQL Databases.
+	The goal of SD abstraction is to significantly reduce the amount of boilerplate code required to implement 
+	data access layers for various persistence stores.
+
+				
+				
+Spring Data ======== JPA =======
+
+
+1.) JpaRepository (RDBMS)
+2.) MongoRepository (NoSQL)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
