@@ -2,6 +2,7 @@ package com.olx.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +18,9 @@ import com.olx.repository.AdvertiseRepository;
 //Its optional to provide name in Service if connected with single DB, For >2 then naming is required
 @Service("MySQl_DB")
 public class AdvertiseServiceImpl implements AdvertiseService {
-	
+
     private final GlobalExceptionHandler globalExceptionHandler;
-    
+
     @Autowired
     AdvertiseRepository advertiseRepository;
 
@@ -27,7 +28,7 @@ public class AdvertiseServiceImpl implements AdvertiseService {
         this.globalExceptionHandler = globalExceptionHandler;
     }
 
-    // Done the changes for database 
+    // Done the changes for Database
 	@Override
 	public List<AdvertiseDto> getAllAdvertise() {
 		List<AdvertiseEntity> advertiseEntity = advertiseRepository.findAll();
@@ -40,63 +41,70 @@ public class AdvertiseServiceImpl implements AdvertiseService {
 		return advertiseDtos;
 	}
 
+	// Done the changes for Database
 	@Override
 	public AdvertiseDto getAdvertiseById(int id) {
-		for(AdvertiseDto advertiseDto:obj)
+		Optional<AdvertiseEntity> advertiseEntity=advertiseRepository.findById(id);
+		if(advertiseEntity.isPresent())
 		{
-			if(advertiseDto.getId()==id) {
-				return advertiseDto;
-			}
+			AdvertiseEntity entity = advertiseEntity.get();
+			return new AdvertiseDto(entity.getId(),entity.getName(),
+					entity.getMarket(),entity.getPrice());
 		}
 	    throw new InvalidAdvertiseIdException(" "+id);
 	}
 
-	// Done the changes for database 
+	// Done the changes for Database
 	@Override
 	public AdvertiseDto createAdvertise(AdvertiseDto advertiseDto) {
-		
+
 		AdvertiseEntity advertiseEntity, dd;
-	
 		dd=advertiseRepository.findByMarket(advertiseDto.getMarket());
-		System.out.println(dd);
 		if(dd==null) {
 			advertiseEntity=new AdvertiseEntity(advertiseDto.getName(),advertiseDto.getMarket(),advertiseDto.getPrice());
 			advertiseEntity = advertiseRepository.save(advertiseEntity);
-		
+
 			advertiseDto = new AdvertiseDto(advertiseEntity.getId(),advertiseEntity.getName(),
 										advertiseEntity.getMarket(),advertiseEntity.getPrice());
 		return advertiseDto;
+		} else {
+			throw new NewMarketNameAlreadyPresentException(" "+advertiseDto.getMarket());
 		}
-		else 
-			 throw new NewMarketNameAlreadyPresentException(" "+advertiseDto.getMarket());
 	}
 
+	// Done the changes for Database
 	@Override
 	public AdvertiseDto updateAdvertise(int id, AdvertiseDto advertiseDto) {
-		AdvertiseDto dto=getAdvertiseById(id);
-		dto.setMarket(advertiseDto.getMarket());
-		dto.setName(advertiseDto.getName());
-		dto.setPrice(advertiseDto.getPrice());
 
-		return dto;
+		AdvertiseEntity existingAdvertise = advertiseRepository.findById(id).orElseThrow(() ->
+									new IdNotFoundException("Advertise not found with id: " + id));
+
+		existingAdvertise.setName(advertiseDto.getName());
+		existingAdvertise.setMarket(advertiseDto.getMarket());
+	    existingAdvertise.setPrice(advertiseDto.getPrice());
+
+	    AdvertiseEntity updatedAdvertise = advertiseRepository.save(existingAdvertise);
+
+	    AdvertiseDto dto = new AdvertiseDto(existingAdvertise.getId(),existingAdvertise.getName(),
+	    		existingAdvertise.getMarket(),existingAdvertise.getPrice());
+
+	    return dto;
 	}
 
+	// Done the changes for Database
 	@Override
 	public boolean deleteAdvertiseByid(int id) {
-		AdvertiseDto dto=getAdvertiseById(id);
-		if(dto==null) {
-			throw new IdNotFoundException(" "+id);
+
+		Optional<AdvertiseEntity> advertiseEntity =advertiseRepository.findById(id);
+		if(advertiseEntity.isPresent()) {
+		advertiseRepository.deleteById(id);
+
+		return true;
 		} else {
-		obj.remove(dto);
-		return true;}
+			return false;
+		}
 	}
 
-	private static List<AdvertiseDto> obj=new ArrayList<>();
-	static {
-	obj.add(new AdvertiseDto(1,"IBM","BSE",2300));
-	obj.add(new AdvertiseDto(2,"Zensar","NSE",3200));
-	obj.add(new AdvertiseDto(3,"Infosys","BSE",4500));
 
-	}
 
 }

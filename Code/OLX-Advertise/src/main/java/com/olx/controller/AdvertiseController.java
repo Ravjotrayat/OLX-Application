@@ -59,11 +59,11 @@ public class AdvertiseController {
 							@RequestBody AdvertiseDto advertiseDto)
 	{
 		AdvertiseDto advertiseDto2=advertiseService.updateAdvertise(id,advertiseDto);
-		return new ResponseEntity<>(advertiseDto2,HttpStatus.CREATED);
+		return new ResponseEntity<>(advertiseDto2,HttpStatus.ACCEPTED);
 	}
 
 
-	@Operation(description = "Only the advertisement owner can delete the advertise")
+	@Operation(description = "Only the advertisement owner can DELETE the advertise")
 	@DeleteMapping(value = "/ad/{id}")
 	public ResponseEntity<Boolean> deleteAdvertiseByid(@PathVariable("id") int id )
 	{

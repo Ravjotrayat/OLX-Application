@@ -1,14 +1,11 @@
 package com.olx.entity;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name= "ADVERTISE")
@@ -17,8 +14,8 @@ public class AdvertiseEntity {
 	@Id // Primary Key
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
-	@Column(name = "name")  // by default name, if wanted to provided different column name in database, the use this 
+
+	@Column(name = "name")  // by default name, if wanted to provided different column name in database, the use this
 	private String name;
 
 	private String market;
@@ -73,7 +70,7 @@ public class AdvertiseEntity {
 	public String toString() {
 		return "AdvertiseEntity [id=" + id + ", name=" + name + ", market=" + market + ", price=" + price + "]";
 	}
-	
-	
+
+
 
 }

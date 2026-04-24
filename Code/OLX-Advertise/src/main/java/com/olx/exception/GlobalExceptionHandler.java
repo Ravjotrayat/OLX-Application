@@ -29,7 +29,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		String ex=exception.toString();
 		return handleExceptionInternal(exception, ex, new HttpHeaders(), HttpStatus.CONFLICT, request);
 	}
-	
+
 	@ExceptionHandler(value = {NewMarketNameAlreadyPresentException.class})
 	public ResponseEntity<Object> handleNameException(Exception tt, WebRequest request ) throws Exception
 	{

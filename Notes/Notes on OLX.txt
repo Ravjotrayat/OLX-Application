@@ -78,12 +78,14 @@ What is Spring Data?
 Ans. It is the part of Spring Framework. Provides abstraction layer over SQL as well as NoSQL Databases.
 	The goal of SD abstraction is to significantly reduce the amount of boilerplate code required to implement 
 	data access layers for various persistence stores.
-
 				
 				
-Spring Data ======== JPA =======
-
-
+				JPA ----> MySQL		
+				 |
+Spring Data =====> JPA ======> 	JPA ----> Oracle
+				 |
+			     Mongo DB --> Mongo BD
+				API
 1.) JpaRepository (RDBMS)
 2.) MongoRepository (NoSQL)
 
