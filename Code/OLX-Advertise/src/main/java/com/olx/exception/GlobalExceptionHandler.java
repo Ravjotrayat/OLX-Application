@@ -36,6 +36,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		String ex=tt.toString();
 		return handleExceptionInternal(tt, ex, new HttpHeaders(), HttpStatus.CONFLICT, request);
 	}
+	
+	
+	@ExceptionHandler(value = {InvalidInputException.class})
+	public ResponseEntity<Object> InvalidInputNameException(Exception tt, WebRequest request ) throws Exception
+	{
+		String ex=tt.toString();
+		return handleExceptionInternal(tt, ex, new HttpHeaders(), HttpStatus.CONFLICT, request);
+	}
 }
 
 

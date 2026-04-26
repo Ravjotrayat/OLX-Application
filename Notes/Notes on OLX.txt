@@ -90,12 +90,31 @@ Spring Data =====> JPA ======> 	JPA ----> Oracle
 2.) MongoRepository (NoSQL)
 
 
+JPQL : Java Persistence Query Language
+This query is used on Entity Table and not the database.
+Example : @Query(value = "select se from StockEntity se where se.name like %:namePattern%")
+	 List<StockEntity> getStockByNamePattern(String namePattern){
+	}
 
 
+JPA :
+
+Jakarta.persistence.EntityManager  // heart of the JPA
+
+Entity Mapping :
+
+# 3 types of relationship between two entities :
+1. One to One
+		- Profile  - Employee
+				- id, name, position , profile_id(FK).
+				- @Column for id, name, position.
+				- @JoinColumn for porfile_id as it is a Foreign Key.
+				- @OneToOne(cascade={CascadeType.ALL},fetch=FetchType.LAZY)  // Use for updating the child entity class while updating the parent entity classa at the same time.
+				FetchType.LAZY/EAGER => If a person wants the information of parent class, and wanted the child entity class info as well, we'll use EAGER. If not, then we'll go for LAZY.
 
 
-
-
+2. One to Many
+3. Many to Many
 
 
 

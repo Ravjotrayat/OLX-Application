@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.olx.dto.AdvertiseDto;
@@ -64,7 +65,7 @@ public class AdvertiseController {
 
 
 	@Operation(description = "Only the advertisement owner can DELETE the advertise")
-	@DeleteMapping(value = "/ad/{id}")
+	@DeleteMapping(value = "/ad/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Boolean> deleteAdvertiseByid(@PathVariable("id") int id )
 	{
 		if(advertiseService.deleteAdvertiseByid(id)) {
@@ -73,8 +74,38 @@ public class AdvertiseController {
 			return new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+//	Sorting
+	@GetMapping(value = "/ad/name/{sortType}") 
+	public ResponseEntity<List<AdvertiseDto>> getOrderByName(@PathVariable("sortType") String sortType)
+	{
+		return new ResponseEntity<>(advertiseService.getOrderByName(sortType),HttpStatus.OK);
+	}
+	
+//	Paging
+	
+//	In Spring Data JPA last part of the video
+	
+//	Searching Criteria
+	@GetMapping(value = "/ad/search/filtercriteria", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<AdvertiseDto> searchStockByFilterCriteria(
+			@RequestParam(name="searchText",required = false) String searchText,
+			@RequestParam(name="name",required = false)String name,
+			@RequestParam(name="market",required = false)String market,
+			@RequestParam(name="sortedBy",required = false)String sortedBy,
+			@RequestParam(name="startIndex",defaultValue = "0",required = false)int startIndex,
+			@RequestParam(name="records",defaultValue = "10",required = false)int records
+			)
+	{
+	return advertiseService.searchAdvertiseByFilterCriteria(searchText, name, market, sortedBy, startIndex, records);
+}
+}
+	
+	
+	
+	
+	
 //-------------------------------------------------------------------------------------------------------------
-
 //	//	Local Exceptional Handler
 //	@ExceptionHandler(value = {InvalidAdvertiseIdException.class})
 //	public ResponseEntity<Object> handleInvalidid(Exception ex, WebRequest request ) throws Exception
@@ -82,6 +113,3 @@ public class AdvertiseController {
 //		String clientMessage=ex.toString();
 //		return new ResponseEntity<>(clientMessage, HttpStatus.CONFLICT);
 //	}
-
-
-}
